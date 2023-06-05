@@ -40,18 +40,10 @@ private:
     std::vector<std::string> splitLine(std::string &choosenService, char splitor);
 
     void diagnoseQuery();
-    void topology();
-    void show();
     void lsrp();
     void dvrp();
-    void modify();
-    void remove();
     void checkTopology();
-    bool showIsValid();
-    bool lsrpIsValid();
-    bool dvrpIsValid();
     void checkModify();
-    void checkExistence(vector<string> id);
 
     std::vector<std::string> wordsOfLine;
     std::vector<std::vector<int>> route;
