@@ -198,10 +198,10 @@ void Network::runLSRP(int src)
                     distance[v] = distance[u] + network[u][v];
                     parent[v] = u;
                 }
-        //cout << "Iter " << count << ":" << endl;
-        //printSolutionLSRP(distance);
+        cout << "Iter " << count << ":" << endl;
+        printSolutionLSRP(distance);
     }
-    //printSolution(src, distance, parent);
+    printSolution(src, distance, parent);
 }
 
 void Network::runDVRP(int source)
@@ -238,7 +238,7 @@ void Network::runDVRP(int source)
         }
     } 
 
-    //printSolution(source, dis, parent);
+    printSolution(source, dis, parent);
 }
 
 void Network::removeConnection(int src, int dst)
