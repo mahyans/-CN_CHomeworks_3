@@ -100,8 +100,7 @@
 
 ## مقایسه نتایج
 
-[![image](https://www.linkpicture.com/q/image_2023_06_04T18_28_35_268Z.png)](https://www.linkpicture.com/view.php?img=LPic647e0b443540e1165332131)
-
+[![image](https://www.linkpicture.com/q/Screen-Shot-2023-06-05-at-9.39.57-PM_1.png)](https://www.linkpicture.com/view.php?img=LPic647e259dc29cb1863726673)
 
 
 هنگامی که عملیات مسیریابی را دفعه اول اجرا میکنیم میبینیم که lsrp 
