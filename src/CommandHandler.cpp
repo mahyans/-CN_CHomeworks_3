@@ -40,53 +40,12 @@ void CommandHandler::checkTopology()
     route = link;
 }
 
-bool CommandHandler::showIsValid()
-{
-    // if (showLength == NO_TOPOLOGY) // we don't need to check this
-        // throw ShowEmptyTable();
-    
-    return true;
-}
-
-bool CommandHandler::lsrpIsValid()
-{
-    return true;
-
-}
-
-bool CommandHandler::dvrpIsValid()
-{
-    return true;
-
-}
-
 void CommandHandler::checkModify()
 {
     modifyInfo = splitLine(wordsOfLine[MODIFY_IDX], D_SPLITOR);
 
     if (modifyInfo[FIRST_NODE] == modifyInfo[SECOND_NODE])
         throw ModifySameID();
-}
-
-void CommandHandler::checkExistence(vector<string> id)
-{
-    int src = stoi(id[FIRST_NODE])-1;
-    int dst = stoi(id[SECOND_NODE])-1;
-    if (route[src][dst] == -1){
-        throw NotFoundError();
-    }    
-}
-
-void CommandHandler::topology()
-{
-    // call network class pointer to implement CN
-    network->implementCN(route);
-
-}
-
-void CommandHandler::show()
-{
-    network->showTopology();
 }
 
 void CommandHandler::lsrp()
@@ -96,7 +55,7 @@ void CommandHandler::lsrp()
         auto start = high_resolution_clock::now();
         for (int i = 0; i < CN_NODE_COUNT; i++)
         {
-            //cout << "lsrp for node "<< i+1<< ":" << endl;
+            cout << "lsrp for node "<< i+1<< ":" << endl;
             network->runLSRP(i);
         }
         auto stop = high_resolution_clock::now();
@@ -116,7 +75,7 @@ void CommandHandler::dvrp()
         auto start = high_resolution_clock::now();
         for (int i = 0; i < CN_NODE_COUNT; i++)
         {
-            //cout << "dvrp for node "<< i+1<< ":" << endl;
+            cout << "dvrp for node "<< i+1<< ":" << endl;
             network->runDVRP(i);
         }
         auto stop = high_resolution_clock::now();
@@ -130,17 +89,10 @@ void CommandHandler::dvrp()
 
 }
 
-void CommandHandler::modify()
-{
-    //call network modify function
-    network->modifyCost(stoi(modifyInfo[FIRST_NODE])-1, stoi(modifyInfo[SECOND_NODE])-1, stoi(modifyInfo[COST]));
-}
-
 void CommandHandler::remove()
 {
     vector<string> removeID = splitLine(wordsOfLine[REMOVE_IDX], D_SPLITOR);
     network->removeConnection(stoi(removeID[FIRST_NODE])-1, stoi(removeID[SECOND_NODE])-1);
-
 }
 
 
@@ -149,16 +101,19 @@ void CommandHandler::diagnoseQuery()
     if (wordsOfLine[QUERY_TYPE] == TOPOLOGY){
         checkTopology();
         network->implementCN(route);
+         cout << "OK";
     }
     else if (wordsOfLine[QUERY_TYPE] == SHOW)
         network->showTopology();
     else if (wordsOfLine[QUERY_TYPE] == MODIFY){
         checkModify();
         network->modifyCost(stoi(modifyInfo[FIRST_NODE])-1, stoi(modifyInfo[SECOND_NODE])-1, stoi(modifyInfo[COST]));
+        cout << "OK";
     }
     else if (wordsOfLine[QUERY_TYPE] == REMOVE){
         vector<string> removeID = splitLine(wordsOfLine[REMOVE_IDX], D_SPLITOR);
         network->removeConnection(stoi(removeID[FIRST_NODE])-1, stoi(removeID[SECOND_NODE])-1);
+        cout << "OK";
     }
     else if (wordsOfLine[QUERY_TYPE] == LSRP)
         lsrp() ;
@@ -179,7 +134,6 @@ void CommandHandler::getQuery(string query)
 
     if (wordsOfLine.empty())       
         throw BadRequestError();
-
-   
+    
     diagnoseQuery();
 }
