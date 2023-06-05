@@ -102,6 +102,8 @@
 
 [![image](https://www.linkpicture.com/q/image_2023_06_04T18_28_35_268Z.png)](https://www.linkpicture.com/view.php?img=LPic647e0b443540e1165332131)
 
+
+
 هنگامی که عملیات مسیریابی را دفعه اول اجرا میکنیم میبینیم که lsrp 
 از dvrp سریع تر است . 
 عملیات lsrp زمانی 
